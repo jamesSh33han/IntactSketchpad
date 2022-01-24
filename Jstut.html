@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">        
+        <meta name="viewport" content="width = device-width, initial-scale = 4">
+        <title>InTact Sketchpad Paint App</title>
+        <link rel="stylesheet" type="text/css" href="mainstyle.css">
+        <script src="jscolor.js"></script>
+        <script src="Jstut.js"></script>
+        
+    </head>
+    <body>
+        <div class="wrapper">
+ 
+            <div class="toolbar">
+                <a class="selected" href="#" id="open" onclick="OpenImage()"><img src="open-icon.png"></a>
+                <a href="#" id="save" onclick="SaveImage()"><img src="save-icon.png"></a>
+                <a href="#" id="brush" onclick="ChangeTool('brush')"><img src="brush-icon.png"></a>
+                <a href="#" id="line" onclick="ChangeTool('line')"><img src="line-icon.png"></a>
+                <a href="#" id="rectangle" onclick="ChangeTool('rectangle')"><img src="rectangle-icon.png"></a>
+                <a href="#" id="circle" onclick="ChangeTool('circle')"><img src="circle-icon.png"></a>
+                <a href="#" id="ellipse" onclick="ChangeTool('ellipse')"><img src="ellipse-icon.png"></a>
+                <a href="#" id="polygon" onclick="ChangeTool('polygon')"><img src="polygon-icon.png"></a>
+            </div><br>
+<canvas id="my-canvas" width="600" height="600" style="text-align: center"></canvas>
+            <div id="img-data-div" style="text-align: center">
+                <a href="#" id="img-file" download="image.png"><button>download image</button></a>
+            </div>
+ 
+        </div>
+    </body>
+</html>
