@@ -11,6 +11,31 @@ let ctx;
 // Stores previously drawn image data to restore after
 // new drawings are added
 let savedImageData;
+
+// -- SPEECH RECOGNITION PACKAGE --
+// Chrome supports speech recognition with prefixed properties, we define them here
+var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
+
+// Defining grammar that we want our application to recognize
+var fileSpeech = [ 'save', 'delete'];
+var grammar = '#JSGF V1.0; grammar fileSpeech; public <fileSpeech> = ' + fileSpeech.join(' | ') + ' ;'
+
+// Plugging grammar into speech recognition
+// Call constructor
+var recognition = new SpeechRecognition();
+// Define variable to hold the new speech grammar list
+var speechRecognitionList = new SpeechGrammarList();
+
+// Method that accepts as parameters the string we want to add, setting other recognition properties
+speechRecognitionList.addFromString(grammar, 1);
+recognition.grammars = speechRecognitionList;
+recognition.continuous = false;
+recognition.lang = 'en-US';
+recognition.interimResults = false;
+recognition.maxAlternatives = 1;
+
 // Stores whether I'm currently dragging the mouse
 let dragging = false;
 let strokeColor = 'black';
@@ -347,7 +372,7 @@ function SaveImage(){
     // Get a reference to the link element 
     var imageFile = document.getElementById("img-file");
     // Set that you want to download the image when link is clicked
-    imageFile.setAttribute('download', 'image.png');
+    imageFile.setAttribute('download', 'image.svg');
     // Reference the image in canvas for download
     imageFile.setAttribute('href', canvas.toDataURL());
 }

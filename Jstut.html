@@ -11,22 +11,14 @@
     </head>
     <body>
         <div class="wrapper">
- 
             <div class="toolbar">
                 <a class="selected" href="#" id="open" onclick="OpenImage()"><img src="icons/open-icon.png"></a>
                 <a href="#" id="save" onclick="SaveImage()"><img src="icons/save-icon.png"></a>
                 <a href="#" id="brush" onclick="ChangeTool('brush')"><img src="icons/brush-icon.png"></a>
+                <a href="#" id="img-file" onclick="download(tactileImage.png)"><img src="icons/download-icon.png"></a>
                 <a href="#" id="line" onclick="ChangeTool('line')"><img src="icons/line-icon.png"></a>
-                <a href="#" id="rectangle" onclick="ChangeTool('rectangle')"><img src="icons/rectangle-icon.png"></a>
-                <a href="#" id="circle" onclick="ChangeTool('circle')"><img src="icons/circle-icon.png"></a>
-                <a href="#" id="ellipse" onclick="ChangeTool('ellipse')"><img src="icons/ellipse-icon.png"></a>
-                <a href="#" id="polygon" onclick="ChangeTool('polygon')"><img src="icons/polygon-icon.png"></a>
             </div><br>
-<canvas id="my-canvas" width="600" height="600" style="text-align: center"></canvas>
-            <div id="img-data-div" style="text-align: center">
-                <a href="#" id="img-file" download="image.png"><button>download image</button></a>
-            </div>
- 
+<canvas id="my-canvas" width="900" height="600" style="text-align: center"></canvas>
         </div>
     </body>
 </html>
