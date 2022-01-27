@@ -1,5 +1,5 @@
 html {
-    margin-left: 75px;
+    margin-left: 0px;
 }
 
 .menu {
@@ -25,5 +25,46 @@ html {
 }
 
 .menu__item > i {
-    font-size: 3.5em;
+    font-size: 2.5em;
+}
+
+.menu__item--active {
+    color: #000000;
+    background: #dddddd;
+}
+
+.menu__item:hover {
+    background: #dddddd;
+}
+
+.menu__item::after {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 100%;
+    content: attr(data-tooltip);
+    margin-left: 15px;
+    white-space: nowrap;
+    padding: 7px 12px;
+    font-size: 0.9em;
+    font-weight: bold;
+    background: rgba(0,0,0,0.8);
+    border-radius: 15px;
+    color: #ffffff;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+}
+
+.menu__item:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+#my-canvas{
+    display: block;
+    margin: 0 auto;
+    border: 2.5px solid #000000;
+    transform: translateX(-5%);
 }
