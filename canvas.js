@@ -106,8 +106,9 @@ function setupCanvas(){
 }
 
 function ChangeTool(toolClicked){
-    document.getElementById("Load an Image").className = "";
-    document.getElementById("Active Draw").className = "";
+    document.getElementById("open").className = "";
+    document.getElementById("save").className = "";
+    document.getElementById("brush").className = "";
     
     // Highlight the last selected tool on toolbar
     document.getElementById(toolClicked).className = "selected";
@@ -234,7 +235,7 @@ function getPolygon(){
 function drawRubberbandShape(loc){
     ctx.strokeStyle = strokeColor;
     ctx.fillStyle = fillColor;
-    if(currentTool === "Active Draw"){
+    if(currentTool === "brush"){
         // Create paint brush
         DrawBrush();
     } else if(currentTool === "line"){

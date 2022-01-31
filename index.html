@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="menu.css">
         <script src="canvas.js"></script>
+        <script src="canvas2svg.js"></script>
     </head>
     <body>
         <div class="wrapper">
@@ -20,7 +21,7 @@
                 <a href="./" class="menu__item menu__item--active" data-tooltip="Active Draw">
                     <i class="material-icons">brush</i>
                 </a>
-                <a href="" class="menu__item" data-tooltip="Download Image" download="tactileDrawing.png">
+                <a href="" class="menu__item" id="img-file" onclick="download(tactileImage.png)" data-tooltip="Download Image">
                     <i class="material-icons">download</i>
                 </a>
                 <a href="./" class="menu__item" data-tooltip="Delete Image">
