@@ -8,34 +8,47 @@
         <link rel="stylesheet" type="text/css" href="menu.css">
         <script src="canvas.js"></script>
         <script src="voiceActions.js"></script>
-        <script src="artyom.window.js"></script>
+        <script src="artyom.window.min.js"></script>
         <script>
-            var Jarvis = new Artyom();
+            const artyom = new Artyom();
 
-            Jarvis.say("You may speak Download into the computer to download the current image");
+            artyom.say("You may speak Download into the computer to download the current image");
 
-            var artyom = new Artyom();
+            function startOneCommandArtyom() {
+                artyom.fatality();
 
-            artyom.addCommands([
-                {
-                    indexes: ["Download", "Delete"],
-                    action: function(i){
-                        if(i == 1){
-                            // you said Delete, Deleting current canvas and redrawing
-                        } else if(i ==0){
-                            // you said Download, Saving current canvas and downloading image
-                            var imageFile = document.getElementById("img-file");
-                            // Set that you want to download the image when link is clicked
-                            imageFile.setAttribute('download', 'image.png');
-                            // Reference the image in canvas for download
-                            imageFile.setAttribute('href', canvas.toDataURL());
-                            imageFile.download(tactileImage.png);
-                            Jarvis.say("Downloading");
-                        }
+                setTimeout(function(){
+                    artyom.initialize({
+                        lang: "en-GB", // GreatBritain english
+                        continuous: true, // Listen forever
+                        listen: true, // Start to listen commands !
+                        debug: true, // Show messages in the console
+                        speed: 1, //talk normally
+                    }).then(function(){
+                        console.log("Ready to Work !");
+                    });
+                },250);
+            }
 
-                    }
+            var userDictation = artyom.newDictation({
+                continuous:true,
+                onResult:function(text){
+                    //do something with text
+                    console.log(text);
+                },
+                onStart:function(){
+                    console.log("Dictation started by the user");
+                },
+                onEnd:function(){
+                    alert("Dictation stopped by the user");
                 }
-            ]);
+            });
+
+            UserDictation.start();
+
+
+
+            UserDictation.stop();
 
         </script>
 
