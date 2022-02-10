@@ -7,8 +7,38 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="menu.css">
         <script src="canvas.js"></script>
-        <script src="canvas2svg.js"></script>
-        <script src="speechRecognition.js"></script>
+        <script src="voiceActions.js"></script>
+        <script src="artyom.window.js"></script>
+        <script>
+            var Jarvis = new Artyom();
+
+            Jarvis.say("You may speak Download into the computer to download the current image");
+
+            var artyom = new Artyom();
+
+            artyom.addCommands([
+                {
+                    indexes: ["Download", "Delete"],
+                    action: function(i){
+                        if(i == 1){
+                            // you said Delete, Deleting current canvas and redrawing
+                        } else if(i ==0){
+                            // you said Download, Saving current canvas and downloading image
+                            var imageFile = document.getElementById("img-file");
+                            // Set that you want to download the image when link is clicked
+                            imageFile.setAttribute('download', 'image.png');
+                            // Reference the image in canvas for download
+                            imageFile.setAttribute('href', canvas.toDataURL());
+                            imageFile.download(tactileImage.png);
+                            Jarvis.say("Downloading");
+                        }
+
+                    }
+                }
+            ]);
+
+        </script>
+
     </head>
     <body>
         <div class="wrapper">
