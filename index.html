@@ -14,41 +14,13 @@
 
             artyom.say("You may speak Download into the computer to download the current image");
 
-            function startOneCommandArtyom() {
-                artyom.fatality();
-
-                setTimeout(function(){
-                    artyom.initialize({
-                        lang: "en-GB", // GreatBritain english
-                        continuous: true, // Listen forever
-                        listen: true, // Start to listen commands !
-                        debug: true, // Show messages in the console
-                        speed: 1, //talk normally
-                    }).then(function(){
-                        console.log("Ready to Work !");
-                    });
-                },250);
-            }
-
-            var userDictation = artyom.newDictation({
-                continuous:true,
-                onResult:function(text){
-                    //do something with text
-                    console.log(text);
-                },
-                onStart:function(){
-                    console.log("Dictation started by the user");
-                },
-                onEnd:function(){
-                    alert("Dictation stopped by the user");
-                }
+            artyom.initialize({
+                lang: "en-GB", // GreatBritain english
+                continuous: true, // Listen forever
+                listen: true, // Start to listen commands !
+                debug: false, // Show messages in the console
+                speed: 1, //talk normally
             });
-
-            UserDictation.start();
-
-
-
-            UserDictation.stop();
 
         </script>
 
