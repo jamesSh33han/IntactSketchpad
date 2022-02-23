@@ -342,14 +342,28 @@ function SaveImage(){
     // Reference the image in canvas for download
     imageFile.setAttribute('href', canvas.toDataURL());
 }
- 
-function OpenImage(){
-    let img = new Image();
-    // Once the image is loaded clear the canvas and draw the new one
-    img.onload = function(){
-        ctx.clearRect(0,0,canvas.width, canvas.height);
-        ctx.drawImage(img,0,0);
-    }
-    img.src = 'image.png';
-    
+
+// upload user-specified image into the current canvas
+function loadImage(){
+    var imgInput = document.getElementById('imageInput');
+    imgInput.addEventListener('change', function(e) {
+        if(e.target.files) {
+            let imageFile = e.target.files[0]; //here we get the image file
+            var reader = new FileReader();
+            reader.readAsDataURL(imageFile);
+            reader.onloadend = function (e) {
+                var myImage = new Image(); // Creates image object
+                myImage.src = e.target.result; // Assigns converted image to image object
+                myImage.onload = function(ev) {
+                    canvas = document.getElementById('my-canvas');
+                    // Get methods for manipulating the canvas
+                    ctx = canvas.getContext('2d');
+                    canvas.width = myImage.width; // Assigns image's width to canvas
+                    canvas.height = myImage.height; // Assigns image's height to canvas
+                    ctx.drawImage(myImage,0,0); // Draws the image on canvas
+                    let imgData = canvas.toDataURL("image/jpeg",0.75); // Assigns image base64 string in jpeg format to a variable
+                }
+            }
+        }
+    });
 }
