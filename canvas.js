@@ -15,8 +15,8 @@ let line_Width = 2;
 let polygonSides = 6;
 // Tool currently using
 let currentTool = 'brush';
-let canvasWidth = 1000;
-let canvasHeight = 800;
+let canvasWidth = 1625;
+let canvasHeight = 940;
 
 // Stores whether I'm currently using brush
 let usingBrush = false;
@@ -355,9 +355,6 @@ function loadImage(){
                 var myImage = new Image(); // Creates image object
                 myImage.src = e.target.result; // Assigns converted image to image object
                 myImage.onload = function(ev) {
-                    canvas = document.getElementById('my-canvas');
-                    // Get methods for manipulating the canvas
-                    ctx = canvas.getContext('2d');
                     canvas.width = myImage.width; // Assigns image's width to canvas
                     canvas.height = myImage.height; // Assigns image's height to canvas
                     ctx.drawImage(myImage,0,0); // Draws the image on canvas
