@@ -7,7 +7,7 @@ let canvas;
 let ctx;
 let savedImageData;
 
-testvariable = 1;
+testvariable2 = 1;
 // Stores whether I'm currently dragging the mouse
 let dragging = false;
 let strokeColor = 'black';
