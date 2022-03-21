@@ -7,7 +7,6 @@ let canvas;
 let ctx;
 let savedImageData;
 
-testvariable2 = 1;
 // Stores whether I'm currently dragging the mouse
 let dragging = false;
 let strokeColor = 'black';
@@ -365,3 +364,7 @@ function loadImage(){
         }
     });
 }
+
+// function to interact with button that we have coded in as g
+var KeypressFunctions = [];
+KeypressFunctions['g'.charCodeAt(0)] = SaveImage()
