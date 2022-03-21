@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=4.0">
         <title>Intact Sketchpad</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="menu.css">
         <script src="canvas.js"></script>
         <script src="voiceActions.js"></script>
@@ -12,14 +13,12 @@
         <script>
             const artyom = new Artyom();
 
-            artyom.say("You may speak Download into the computer to download the current image");
-
             artyom.initialize({
                 lang: "en-GB", // GreatBritain english
                 continuous: true, // Listen forever
                 listen: true, // Start to listen commands !
                 debug: false, // Show messages in the console
-                speed: 0.2, //talk a little slower than normal speed
+                speed: 1 //talk a little slower than normal speed
             });      
 
         </script>
@@ -34,7 +33,7 @@
                 <a href="#" class="menu__item" id="save" onclick="SaveImage()" data-tooltip="Save">
                     <i class="material-icons">save_as</i>
                 </a>
-                <a href="./" class="menu__item menu__item--active" id="brush" data-tooltip="Active Draw">
+                <a href="#" class="menu__item menu__item--active" id="brush" data-tooltip="Active Draw">
                     <i class="material-icons">brush</i>
                 </a>
                 <a href="" class="menu__item" id="img-file" onclick="download(image.png)" data-tooltip="Download Image">
@@ -42,6 +41,9 @@
                 </a>
                 <a href="./" class="menu__item" data-tooltip="Delete Image">
                     <i class="material-icons">delete</i>
+                </a>
+                <a href="#" class="menu__item" id="changeThickness" onclick="changeThickness()" data-tooltip="Toggle Thickness">
+                    <i class="material-icons">line_weight</i>
                 </a>
             </div>
 <canvas id="my-canvas" width="1625" height="940" style="text-align: center"></canvas>

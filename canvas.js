@@ -11,6 +11,7 @@ let savedImageData;
 let dragging = false;
 let strokeColor = 'black';
 let fillColor = 'black';
+// Set initial line width to 2
 let line_Width = 2;
 let polygonSides = 6;
 // Tool currently using
@@ -365,6 +366,31 @@ function loadImage(){
     });
 }
 
-// function to interact with button that we have coded in as g
-var KeypressFunctions = [];
-KeypressFunctions['g'.charCodeAt(0)] = SaveImage()
+// Defining labels to represent line thickness and the current index value
+var labels = [ "Initial", "Thin", "Thick" ];
+var index = 0;
+// Defining function changeThickness: when clicked will toggle between three predefined line thicknesses (Initial, Thin, Thick)
+function changeThickness() {
+    index++;
+    if (index == labels.length) {
+        index = 0;
+    }
+    if (labels[index] == "Initial") {
+        ctx.beginPath();
+        artyom.say("Setting Thickness to Standard");
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+    if (labels[index] == "Thin") {
+        ctx.beginPath();
+        artyom.say("Setting Thickness to Thin");
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+    }
+    if (labels[index] == "Thick") {
+        ctx.beginPath();
+        artyom.say("Setting Thickness to Thick");
+        ctx.lineWidth = 6;
+        ctx.stroke();
+    }
+}
