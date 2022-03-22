@@ -30,16 +30,13 @@
                 <a href="#" class="menu__item" id="imageInput" onclick="loadImage()" data-tooltip="Open File">
                     <i class="material-icons">cloud_upload</i>
                 </a>
-                <a href="#" class="menu__item" id="save" onclick="SaveImage()" data-tooltip="Save">
+                <a href="#" class="menu__item" id="save" onclick="SaveImage()" data-tooltip="Save & Download">
                     <i class="material-icons">save_as</i>
                 </a>
                 <a href="#" class="menu__item menu__item--active" id="brush" data-tooltip="Active Draw">
                     <i class="material-icons">brush</i>
                 </a>
-                <a href="" class="menu__item" id="img-file" onclick="download(image.png)" data-tooltip="Download Image">
-                    <i class="material-icons">download</i>
-                </a>
-                <a href="./" class="menu__item" data-tooltip="Delete Image">
+                <a href="./" class="menu__item" onclick="DeleteImage()" data-tooltip="Delete Image">
                     <i class="material-icons">delete</i>
                 </a>
                 <a href="#" class="menu__item" id="changeThickness" onclick="changeThickness()" data-tooltip="Toggle Thickness">

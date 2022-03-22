@@ -334,42 +334,23 @@ function ReactToMouseUp(e){
     usingBrush = false;
 }
 
-// Saves the image in your default download directory
+// Saves the current canvas drawing and downloads the image in your default download directory
+// Utilizes artyom to verbally alert the user that they are about to save the current image
 function SaveImage(){
     // Get a reference to the link element 
-    var imageFile = document.getElementById("img-file");
+    var imageFile = document.getElementById("save");
     // Set that you want to download the image when link is clicked
     imageFile.setAttribute('download', 'image.png');
     // Reference the image in canvas for download
     imageFile.setAttribute('href', canvas.toDataURL());
-}
-
-// upload user-specified image into the current canvas
-function loadImage(){
-    var imgInput = document.getElementById('imageInput');
-    imgInput.addEventListener('change', function(e) {
-        if(e.target.files) {
-            let imageFile = e.target.files[0]; //here we get the image file
-            var reader = new FileReader();
-            reader.readAsDataURL(imageFile);
-            reader.onloadend = function (e) {
-                var myImage = new Image(); // Creates image object
-                myImage.src = e.target.result; // Assigns converted image to image object
-                myImage.onload = function(ev) {
-                    canvas.width = myImage.width; // Assigns image's width to canvas
-                    canvas.height = myImage.height; // Assigns image's height to canvas
-                    ctx.drawImage(myImage,0,0); // Draws the image on canvas
-                    let imgData = canvas.toDataURL("image/jpeg",0.75); // Assigns image base64 string in jpeg format to a variable
-                }
-            }
-        }
-    });
+    artyom.say("Saving and Downloading the Current Image");
 }
 
 // Defining labels to represent line thickness and the current index value
 var labels = [ "Initial", "Thin", "Thick" ];
 var index = 0;
 // Defining function changeThickness: when clicked will toggle between three predefined line thicknesses (Initial, Thin, Thick)
+// Utilizes artyom to verbally alert the user to which slider option they have currently selected
 function changeThickness() {
     index++;
     if (index == labels.length) {
@@ -394,3 +375,39 @@ function changeThickness() {
         ctx.stroke();
     }
 }
+
+// Function to verbally alert the user that they are "Deleting" the current image
+function DeleteImage() {
+    // using artyom to speak aloud
+    artyom.say("Deleting Current Image");
+}
+
+function downloadCanvasAsImage(){
+    let canvasImage = document.getElementById("my-canvas").toDataURL('image/png');
+    // this can be used to download any image from webpage to local disk
+    let xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = function () {
+        let a = document.createElement('a');
+        a.href = window.URL.createObjectURL(xhr.response);
+        a.download = 'image_name.png';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      };
+      xhr.open('GET', canvasImage); // This is to download the canvas Image
+      xhr.send();
+}
+
+// e.keyCode == 71
+document.onkeydown = function (e) {
+    let keyCode = e.keyCode;
+    let chrCode = keyCode - 48 * Math.floor(keyCode / 48);
+    let chr = String.fromCharCode((96 <= keyCode) ? chrCode: keyCode);
+    if (chr == 'G') {
+        downloadCanvasAsImage();
+        artyom.say("Saving and Downloading the Current Image");
+    }
+
+};
