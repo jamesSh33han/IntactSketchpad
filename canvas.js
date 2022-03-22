@@ -334,18 +334,6 @@ function ReactToMouseUp(e){
     usingBrush = false;
 }
 
-// Saves the current canvas drawing and downloads the image in your default download directory
-// Utilizes artyom to verbally alert the user that they are about to save the current image
-function SaveImage(){
-    // Get a reference to the link element 
-    var imageFile = document.getElementById("save");
-    // Set that you want to download the image when link is clicked
-    imageFile.setAttribute('download', 'image.png');
-    // Reference the image in canvas for download
-    imageFile.setAttribute('href', canvas.toDataURL());
-    artyom.say("Saving and Downloading the Current Image");
-}
-
 // Defining labels to represent line thickness and the current index value
 var labels = [ "Initial", "Thin", "Thick" ];
 var index = 0;
@@ -382,6 +370,7 @@ function DeleteImage() {
     artyom.say("Deleting Current Image");
 }
 
+// Function to download the current canvas object as a png image
 function downloadCanvasAsImage(){
     let canvasImage = document.getElementById("my-canvas").toDataURL('image/png');
     // this can be used to download any image from webpage to local disk
@@ -395,19 +384,30 @@ function downloadCanvasAsImage(){
         document.body.appendChild(a);
         a.click();
         a.remove();
-      };
-      xhr.open('GET', canvasImage); // This is to download the canvas Image
-      xhr.send();
+    };
+    xhr.open('GET', canvasImage); // This is to download the canvas Image
+    xhr.send();
+    artyom.say("Saving and Downloading the Current Image");
 }
 
-// e.keyCode == 71
+// Function to act as a key listener
+// Will constantly keep track of the value associated with the most recent character key that was pressed
 document.onkeydown = function (e) {
     let keyCode = e.keyCode;
     let chrCode = keyCode - 48 * Math.floor(keyCode / 48);
+    // chr will constantly be updated to reflect the most recent key pressed
     let chr = String.fromCharCode((96 <= keyCode) ? chrCode: keyCode);
+
+    // if statements to reflect different wacom button key assignments
     if (chr == 'G') {
+        // if the g key is pressed (mapped to the bottom Wacom button) save and 
+        // download the current canvas image
         downloadCanvasAsImage();
-        artyom.say("Saving and Downloading the Current Image");
+    }
+    else if (chr == 'H') {
+        // if the h key is pressed (mapped to the 2nd from bottom Wacom button)
+        // delete the current canvas image
+        DeleteImage();
     }
 
 };
