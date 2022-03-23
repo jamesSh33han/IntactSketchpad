@@ -135,45 +135,6 @@ function UpdateRubberbandSizeData(loc){
     }
 }
 
-function getPolygonPoints(){
-    // Get angle in radians based on x & y of mouse location
-    let angle =  degreesToRadians(getAngleUsingXAndY(loc.x, loc.y));
- 
-    // X & Y for the X & Y point representing the radius is equal to
-    // the X & Y of the bounding rubberband box
-    let radiusX = shapeBoundingBox.width;
-    let radiusY = shapeBoundingBox.height;
-    // Stores all points in the polygon
-    let polygonPoints = [];
- 
-    // Each point in the polygon is found by breaking the 
-    // parts of the polygon into triangles
-    // Then I can use the known angle and adjacent side length
-    // to find the X = mouseLoc.x + radiusX * Sin(angle)
-    // You find the Y = mouseLoc.y + radiusY * Cos(angle)
-    for(let i = 0; i < polygonSides; i++){
-        polygonPoints.push(new PolygonPoint(loc.x + radiusX * Math.sin(angle),
-        loc.y - radiusY * Math.cos(angle)));
- 
-        // 2 * PI equals 360 degrees
-        // Divide 360 into parts based on how many polygon 
-        // sides you want 
-        angle += 2 * Math.PI / polygonSides;
-    }
-    return polygonPoints;
-}
- 
-// Get the polygon points and draw the polygon
-function getPolygon(){
-    let polygonPoints = getPolygonPoints();
-    ctx.beginPath();
-    ctx.moveTo(polygonPoints[0].x, polygonPoints[0].y);
-    for(let i = 1; i < polygonSides; i++){
-        ctx.lineTo(polygonPoints[i].x, polygonPoints[i].y);
-    }
-    ctx.closePath();
-}
-
 function drawRubberbandShape(loc){
     ctx.strokeStyle = strokeColor;
     ctx.fillStyle = fillColor;
@@ -321,6 +282,7 @@ function changeThickness() {
 }
 
 // Function to verbally alert the user that they are "Deleting" the current image
+// ----- BUG: CANVAS CURRENTLY DOES NOT FULLY DELETE WHEN USING THE 'H' KEYSTROKE -----
 function DeleteImage() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); //clear html5 canvas
     // using artyom to speak aloud
