@@ -134,34 +134,6 @@ function UpdateRubberbandSizeData(loc){
         shapeBoundingBox.top = loc.y;
     }
 }
- 
-// Returns the angle using x and y
-// x = Adjacent Side
-// y = Opposite Side
-// Tan(Angle) = Opposite / Adjacent
-// Angle = ArcTan(Opposite / Adjacent)
-function getAngleUsingXAndY(mouselocX, mouselocY){
-    let adjacent = mousedown.x - mouselocX;
-    let opposite = mousedown.y - mouselocY;
- 
-    return radiansToDegrees(Math.atan2(opposite, adjacent));
-}
- 
-function radiansToDegrees(rad){
-    if(rad < 0){
-        // Correct the bottom error by adding the negative
-        // angle to 360 to get the correct result around
-        // the whole circle
-        return (360.0 + (rad * (180 / Math.PI))).toFixed(2);
-    } else {
-        return (rad * (180 / Math.PI)).toFixed(2);
-    }
-}
- 
-// Converts degrees to radians
-function degreesToRadians(degrees){
-    return degrees * (Math.PI / 180);
-}
 
 function getPolygonPoints(){
     // Get angle in radians based on x & y of mouse location
