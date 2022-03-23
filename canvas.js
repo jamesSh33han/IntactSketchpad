@@ -12,7 +12,7 @@ let dragging = false;
 let strokeColor = 'black';
 let fillColor = 'black';
 // Set initial line width to 2
-let line_Width = 2;
+let line_Width = 6;
 let polygonSides = 6;
 // Tool currently using
 let currentTool = 'brush';
@@ -257,7 +257,7 @@ function ReactToMouseUp(e){
 }
 
 // Defining labels to represent line thickness and the current index value
-var labels = [ "Initial", "Thick", "Thin" ];
+var labels = [ "Thick", "Medium", "Thin" ];
 var index = 0;
 // Defining function changeThickness: when clicked will toggle between three predefined line thicknesses (Initial, Thin, Thick)
 // Utilizes artyom to verbally alert the user to which slider option they have currently selected
@@ -267,19 +267,26 @@ function changeThickness() {
     if (index == labels.length) {
         index = 0;
     }
-    if (labels[index] == "Initial") {
-        artyom.say("Setting Thickness to Standard");
-        ctx.lineWidth = 2;
-    }
     if (labels[index] == "Thick") {
-        ctx.beginPath();
         artyom.say("Setting Thickness to Thick");
         ctx.lineWidth = 6;
+    }
+    if (labels[index] == "Medium") {
+        ctx.beginPath();
+        artyom.say("Setting Thickness to Medium");
+        ctx.lineWidth = 2;
     }
     if (labels[index] == "Thin") {
         artyom.say("Setting Thickness to Thin");
         ctx.lineWidth = 0.5;
     }
+}
+
+// Function to flip current canvas drawing over the horizontal axis
+function flipHorizontally() {
+    ctx.save();
+    ctx.setTransform(1,0,0,-1,0,canvas.height);
+    ctx.restore();
 }
 
 // Function to verbally alert the user that they are "Deleting" the current image
@@ -328,6 +335,11 @@ document.onkeydown = function (e) {
         // if the h key is pressed (mapped to the 2nd from bottom Wacom button)
         // delete the current canvas image
         DeleteImage();
+    }
+    if (chr == 'J') {
+        // if the j key is pressed (mapped to the bottom Wacom button) toggle the line
+        // thickness from Thick to Medium to Thin
+        changeThickness();
     }
 
 };
