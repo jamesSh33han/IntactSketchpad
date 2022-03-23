@@ -261,6 +261,7 @@ var labels = [ "Initial", "Thick", "Thin" ];
 var index = 0;
 // Defining function changeThickness: when clicked will toggle between three predefined line thicknesses (Initial, Thin, Thick)
 // Utilizes artyom to verbally alert the user to which slider option they have currently selected
+// ----- BUG: currently when changing to a thicker line thickness every line on the canvas gets updated -----
 function changeThickness() {
     index++;
     if (index == labels.length) {
@@ -282,9 +283,9 @@ function changeThickness() {
 }
 
 // Function to verbally alert the user that they are "Deleting" the current image
-// ----- BUG: CANVAS CURRENTLY DOES NOT FULLY DELETE WHEN USING THE 'H' KEYSTROKE -----
 function DeleteImage() {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); //clear html5 canvas
+    document.location.reload();
     // using artyom to speak aloud
     artyom.say("Deleting Current Image");
 }
