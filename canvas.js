@@ -86,17 +86,6 @@ function setupCanvas(){
     canvas.addEventListener("mouseup", ReactToMouseUp);
 }
 
-function ChangeTool(toolClicked){
-    document.getElementById("open").className = "";
-    document.getElementById("save").className = "";
-    document.getElementById("brush").className = "";
-    
-    // Highlight the last selected tool on toolbar
-    document.getElementById(toolClicked).className = "selected";
-    // Change current tool used for drawing
-    currentTool = toolClicked;
-}
-
 // Returns mouse x & y position based on canvas position in page
 function GetMousePosition(x,y){
     // Get canvas size and position in web page
@@ -335,7 +324,7 @@ function ReactToMouseUp(e){
 }
 
 // Defining labels to represent line thickness and the current index value
-var labels = [ "Initial", "Thin", "Thick" ];
+var labels = [ "Initial", "Thick", "Thin" ];
 var index = 0;
 // Defining function changeThickness: when clicked will toggle between three predefined line thicknesses (Initial, Thin, Thick)
 // Utilizes artyom to verbally alert the user to which slider option they have currently selected
@@ -345,27 +334,23 @@ function changeThickness() {
         index = 0;
     }
     if (labels[index] == "Initial") {
-        ctx.beginPath();
         artyom.say("Setting Thickness to Standard");
         ctx.lineWidth = 2;
-        ctx.stroke();
-    }
-    if (labels[index] == "Thin") {
-        ctx.beginPath();
-        artyom.say("Setting Thickness to Thin");
-        ctx.lineWidth = 0.5;
-        ctx.stroke();
     }
     if (labels[index] == "Thick") {
         ctx.beginPath();
         artyom.say("Setting Thickness to Thick");
         ctx.lineWidth = 6;
-        ctx.stroke();
+    }
+    if (labels[index] == "Thin") {
+        artyom.say("Setting Thickness to Thin");
+        ctx.lineWidth = 0.5;
     }
 }
 
 // Function to verbally alert the user that they are "Deleting" the current image
 function DeleteImage() {
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); //clear html5 canvas
     // using artyom to speak aloud
     artyom.say("Deleting Current Image");
 }
