@@ -282,11 +282,27 @@ function changeThickness() {
     }
 }
 
-// Function to flip current canvas drawing over the horizontal axis
+// Function to allow us to complete mirror transformations using the current canvas image
+// Can mirror an image horizontally, vertically, or both
+function mirrorImage(ctx, image, x = 0, y = 0, horizontal = false, vertical = false){
+    ctx.save();  // save the current canvas state
+    ctx.setTransform(
+        horizontal ? -1 : 1, 0, // set the direction of x axis
+        0, vertical ? -1 : 1,   // set the direction of y axis
+        x + (horizontal ? image.width : 0), // set the x origin
+        y + (vertical ? image.height : 0)   // set the y origin
+    );
+    ctx.drawImage(image,0,0);
+    ctx.restore(); // restore the state as it was when this function was called
+}
+
+// Function that is called when user clicks button to flip drawing horizontally
 function flipHorizontally() {
-    ctx.save();
-    ctx.setTransform(1,0,0,-1,0,canvas.height);
-    ctx.restore();
+    let canvasImage = document.getElementById("my-canvas");
+    // call mirrorImage() function above to transform canvas
+    mirrorImage(ctx, canvasImage, 0, 0, false, true); // vertical mirror
+    // using artyom to speak aloud
+    artyom.say("Mirroring Image");
 }
 
 // Function to verbally alert the user that they are "Deleting" the current image
@@ -336,10 +352,15 @@ document.onkeydown = function (e) {
         // delete the current canvas image
         DeleteImage();
     }
-    if (chr == 'J') {
-        // if the j key is pressed (mapped to the bottom Wacom button) toggle the line
-        // thickness from Thick to Medium to Thin
+    else if (chr == 'J') {
+        // if the j key is pressed (mapped to the 3rd from bottom Wacom button)
+        // toggle the line thickness from Thick to Medium to Thin
         changeThickness();
+    }
+    else if (chr == 'K') {
+        // if the k key is pressed (mapped to the 4th from bottom Wacom button)
+        // Mirror the current image
+        flipHorizontally();
     }
 
 };
