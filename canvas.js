@@ -333,6 +333,11 @@ function downloadCanvasAsImage(){
     artyom.say("Saving and Downloading the Current Image");
 }
 
+function canvasToSVG() {
+    // serialize to SVG
+    var svgDrawing = ctx.getSerializedSvg(true);
+}
+
 // Function to act as a key listener
 // Will constantly keep track of the value associated with the most recent character key that was pressed
 document.onkeydown = function (e) {

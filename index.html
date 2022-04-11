@@ -8,6 +8,7 @@
         <link href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="menu.css">
         <script src="canvas.js"></script>
+        <script src="fabric.min.js"></script>
         <script src="voiceActions.js"></script>
         <script src="artyom.window.min.js"></script>
         <script>
@@ -27,7 +28,7 @@
     <body>
         <div class="wrapper">
             <div class="menu">
-                <a href="#" class="menu__item" id="imageInput" onclick="loadImage()" data-tooltip="Open File">
+                <a href="#" class="menu__item" id="imageInput" onclick="canvasToSVG()" data-tooltip="Open File">
                     <i class="material-icons">cloud_upload</i>
                 </a>
                 <a href="#" class="menu__item" id="save" onclick="downloadCanvasAsImage()" data-tooltip="Save & Download">
@@ -45,6 +46,7 @@
                 <a href="#" class="menu__item" id="transform" onclick="flipHorizontally()" data-tooltip="Transform">
                     <i class="material-icons">flip</i>
                 </a>
+                <button id="canvas2svg">Canvas 2 SVG</button>
             </div>
 <canvas id="my-canvas" width="1625" height="940" style="text-align: center"></canvas>
         </div>
