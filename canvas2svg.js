@@ -10,7 +10,6 @@
  *
  *  Copyright (c) 2014 Gliffy Inc.
  */
-
 ;(function () {
     "use strict";
 
