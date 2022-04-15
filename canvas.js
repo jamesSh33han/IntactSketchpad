@@ -313,6 +313,18 @@ function DeleteImage() {
     artyom.say("Deleting Current Image");
 }
 
+// Function to translate the selected image to a new position on the canvas
+function translateImage() {
+    let canvasImage = document.getElementById("my-canvas");
+    ctx.save();
+    const centerX = canvas.width / 3;
+    const centerY = canvas.height / 3;
+    ctx.translate(centerX, 0);
+    ctx.drawImage(canvasImage,0,0);
+    ctx.restore(); // restore the state as it was when this function was called
+    artyom.say("Translating Current Image");
+}
+
 // Function to download the current canvas object as a png image
 function downloadCanvasAsImage(){
     let canvasImage = document.getElementById("my-canvas").toDataURL('image/png');
@@ -331,11 +343,6 @@ function downloadCanvasAsImage(){
     xhr.open('GET', canvasImage); // This is to download the canvas Image
     xhr.send();
     artyom.say("Saving and Downloading the Current Image");
-}
-
-function canvasToSVG() {
-    // serialize to SVG
-    var svgDrawing = ctx.getSerializedSvg(true);
 }
 
 // Function to act as a key listener
@@ -366,6 +373,11 @@ document.onkeydown = function (e) {
         // if the k key is pressed (mapped to the 4th from bottom Wacom button)
         // Mirror the current image
         flipHorizontally();
+    }
+    else if (chr == 'L') {
+        // if the k key is pressed (mapped to the 4th from bottom Wacom button)
+        // Mirror the current image
+        translateImage();
     }
 
 };
